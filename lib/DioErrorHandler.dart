@@ -20,7 +20,7 @@ class DioErrorHandler {
         break;
       case DioErrorType.other:
 
-        if((dioError.message?.contains("RedirectException")??false)){
+        if((dioError.message.contains("RedirectException"))){
           errorResponse.message = "${dioError.message}";
         }else {
           errorResponse.message = "Please check the internet connection";
