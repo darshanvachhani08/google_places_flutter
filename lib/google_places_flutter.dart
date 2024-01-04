@@ -26,6 +26,7 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
   final bool isCrossBtnShown;
   final bool showError;
   final EdgeInsetsGeometry padding;
+  final ValueChanged<String>? onChanged;
 
   GooglePlaceAutoCompleteTextField(
       {required this.textEditingController,
@@ -43,6 +44,7 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
         this.seperatedBuilder,
       this.showError = true,
         this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        this.onChanged,
       });
 
   @override
@@ -92,6 +94,7 @@ class _GooglePlaceAutoCompleteTextFieldState
                     isCrossBtn = string.isNotEmpty ? true : false;
                     setState(() {});
                   }
+                  widget.onChanged?.call(string);
                 },
               ),
             ),
