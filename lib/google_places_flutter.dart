@@ -27,6 +27,7 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
   final bool showError;
   final EdgeInsetsGeometry padding;
   final ValueChanged<String>? onChanged;
+  final FocusNode? focusNode;
 
   GooglePlaceAutoCompleteTextField(
       {required this.textEditingController,
@@ -45,6 +46,7 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
       this.showError = true,
         this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         this.onChanged,
+        this.focusNode,
       });
 
   @override
@@ -85,6 +87,7 @@ class _GooglePlaceAutoCompleteTextFieldState
           children: [
             Expanded(
               child: TextFormField(
+                focusNode: widget.focusNode,
                 decoration: widget.inputDecoration,
                 style: widget.textStyle,
                 controller: widget.textEditingController,
