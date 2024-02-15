@@ -163,7 +163,9 @@ class _GooglePlaceAutoCompleteTextFieldState
       Overlay.of(context).insert(this._overlayEntry!);
     } catch (e) {
       var errorHandler = ErrorHandler.internal().handleError(e);
-      _showSnackBar("${errorHandler.message}");
+      if (mounted) {
+        _showSnackBar("${errorHandler.message}");
+      }
     }
   }
 
@@ -187,7 +189,7 @@ class _GooglePlaceAutoCompleteTextFieldState
   }
 
   OverlayEntry? _createOverlayEntry() {
-    if (context.findRenderObject() != null) {
+    if (mounted && context.findRenderObject() != null) {
       RenderBox renderBox = context.findRenderObject() as RenderBox;
       var size = renderBox.size;
       var offset = renderBox.localToGlobal(Offset.zero);
@@ -236,10 +238,12 @@ class _GooglePlaceAutoCompleteTextFieldState
   }
 
   removeOverlay() {
-    alPredictions.clear();
-    this._overlayEntry = this._createOverlayEntry();
-    Overlay.of(context).insert(this._overlayEntry!);
-    this._overlayEntry!.markNeedsBuild();
+    if (mounted) {
+      alPredictions.clear();
+      this._overlayEntry = this._createOverlayEntry();
+      Overlay.of(context).insert(this._overlayEntry!);
+      this._overlayEntry!.markNeedsBuild();
+    }
     }
 
   Future<Response?> getPlaceDetailsFromPlaceId(Prediction prediction) async {
@@ -283,7 +287,7 @@ class _GooglePlaceAutoCompleteTextFieldState
   }
 
   _showSnackBar(String errorData) {
-    if(widget.showError){
+    if(widget.showError && mounted){
       final snackBar = SnackBar(
         content: Text("$errorData"),
       );
