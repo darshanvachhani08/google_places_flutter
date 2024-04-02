@@ -67,6 +67,7 @@ class Prediction {
       json['terms'].forEach((v) {
         terms!.add(new Terms.fromJson(v));
       });
+      terms?.sort((a, b) => (a.offset ?? 0).compareTo(b.offset ?? 0));
     }
     types = json['types'].cast<String>();
     lat = json['lat'];

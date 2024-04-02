@@ -29,25 +29,26 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final FocusNode? focusNode;
 
-  GooglePlaceAutoCompleteTextField(
-      {required this.textEditingController,
-      required this.googleAPIKey,
-      this.debounceTime = 600,
-      this.inputDecoration = const InputDecoration(),
-      this.itemClick,
-      this.isLatLngRequired = true,
-      this.textStyle = const TextStyle(),
-      this.countries = const <String>[],
-      this.getPlaceDetailWithLatLng,
-      this.itemBuilder,
-      this.boxDecoration,
-      this.isCrossBtnShown = true,
-        this.seperatedBuilder,
-      this.showError = true,
-        this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        this.onChanged,
-        this.focusNode,
-      });
+  GooglePlaceAutoCompleteTextField({
+    Key? key,
+    required this.textEditingController,
+    required this.googleAPIKey,
+    this.debounceTime = 600,
+    this.inputDecoration = const InputDecoration(),
+    this.itemClick,
+    this.isLatLngRequired = true,
+    this.textStyle = const TextStyle(),
+    this.countries = const <String>[],
+    this.getPlaceDetailWithLatLng,
+    this.itemBuilder,
+    this.boxDecoration,
+    this.isCrossBtnShown = true,
+    this.seperatedBuilder,
+    this.showError = true,
+    this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+    this.onChanged,
+    this.focusNode,
+  }): super(key: key);
 
   @override
   _GooglePlaceAutoCompleteTextFieldState createState() =>
